@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DIEDEB GAMES</title>
+<style>
+:root{color-scheme:dark;--bg:#0a0b14;--sf:#12142a;--sf2:#1a1d3a;--tx:#e8eaff;--mt:#8b90b8;--ac:#00f0ff;--ac2:#b14dff;--ok:#3dffa0;--er:#ff4d6d;--bd:#2a2e5a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:radial-gradient(ellipse at top,#1b1040 0,var(--bg) 55%) fixed;color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;min-height:100vh}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--bd);background:#0a0b14cc;position:sticky;top:env(safe-area-inset-top,0px);z-index:5;backdrop-filter:blur(8px)}
+.logo{font:800 24px/1 "Orbitron",Impact,system-ui,sans-serif;letter-spacing:2px;background:linear-gradient(90deg,var(--ac),var(--ac2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.coins{padding:6px 14px;border:1px solid var(--ac);border-radius:99px;color:var(--ac);font-weight:700;box-shadow:0 0 12px #00f0ff44}
+nav{display:flex;gap:6px;overflow-x:auto;padding:10px 20px;border-bottom:1px solid var(--bd)}
+nav button{white-space:nowrap;background:var(--sf);color:var(--mt);border:1px solid var(--bd);border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer}
+nav button.on{color:#fff;border-color:var(--ac);box-shadow:0 0 14px #00f0ff55;background:var(--sf2)}
+main{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+h2{margin:0 0 6px;font-size:26px}p.sub{color:var(--mt);margin:0 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;overflow:hidden;cursor:pointer;transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:var(--ac2);box-shadow:0 8px 24px #b14dff33}
+.cv{height:130px;display:flex;align-items:center;justify-content:center;font-size:54px;position:relative}
+.cv b{position:absolute;left:10px;bottom:8px;font-size:12px;letter-spacing:1px;background:#000a;padding:2px 8px;border-radius:5px}
+.cb{padding:12px 14px}.cb h3{margin:0 0 2px;font-size:17px}.cb small{color:var(--mt)}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:4px}
+.free{background:#3dffa022;color:var(--ok)}.paid{background:#ffb84d22;color:#ffb84d}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:13px;color:var(--mt)}
+.btn{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#06070f;border:0;border-radius:8px;padding:10px 20px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.g{background:var(--sf2);color:var(--tx);border:1px solid var(--bd)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.list{display:flex;flex-direction:column;gap:10px}
+.li{display:flex;align-items:center;gap:14px;background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:12px 16px}
+.rk{font:800 24px system-ui;width:38px;color:var(--ac)}.li:nth-child(1) .rk{color:gold}.li:nth-child(2) .rk{color:silver}.li:nth-child(3) .rk{color:#cd7f32}
+.mini{width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.li .g1{flex:1;min-width:0}.li small{color:var(--mt)}
+.panel{background:var(--sf);border:1px solid var(--bd);border-radius:14px;padding:22px;max-width:520px}
+input[type=text],input[type=password]{width:100%;background:var(--bg);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:11px 13px;font-size:15px;margin:6px 0 12px}
+input:focus{outline:0;border-color:var(--ac)}
+.av{width:96px;height:96px;border-radius:50%;border:2px solid var(--ac);object-fit:cover;display:flex;align-items:center;justify-content:center;font-size:40px;background:var(--sf2);box-shadow:0 0 16px #00f0ff55}
+.msg{margin-top:12px;padding:10px 14px;border-radius:8px;font-weight:600}.msg.ok{background:#3dffa01f;color:var(--ok)}.msg.er{background:#ff4d6d1f;color:var(--er)}
+#modal{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;padding:16px;z-index:20}
+#modal.on{display:flex}.mb{background:var(--sf);border:1px solid var(--ac2);border-radius:14px;width:min(1000px,100%);max-height:94vh;overflow:auto;padding:18px;position:relative}
+.x{position:absolute;right:12px;top:10px;background:none;border:0;color:var(--tx);font-size:26px;cursor:pointer;z-index:2}
+.stage{aspect-ratio:16/9;width:100%;border:1px solid var(--bd);border-radius:10px;background:#000;margin:10px 0}
+iframe.stage{display:block}.lock{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:20px}
+.pill{display:inline-block;background:var(--sf2);border:1px solid var(--bd);border-radius:99px;padding:3px 12px;font-size:12px;margin:2px;color:var(--mt)}
+code{background:var(--bg);padding:2px 7px;border-radius:5px;color:var(--ac)}
+.live{color:var(--ok);font-size:12px}
+</style></head><body>
+<header><div class="logo">DIEDEB GAMES</div><div class="coins" id="hc">💎 Inicia sesión</div></header>
+<nav id="nav"></nav><main id="app"></main>
+<div id="modal"><div class="mb"><button class="x" onclick="closeM()">×</button><div id="mc"></div></div></div>
+<script>
+/* ====== AÑADE TUS JUEGOS AQUÍ: UNA LÍNEA POR JUEGO ======
+ juego('Nombre','Desarrollador',PRECIO,'URL','Descripción')
+ PRECIO: 0 = gratis, o el costo en DiebCoins (ej. 200).
+ Se detecta solo: URL que termina en .html = se juega dentro de la página; cualquier otra = botón de descarga/abrir.
+ Los colores de portada se generan solos. Opcional al final: {icon:'🎮',tags:['Acción','Terror']}
+ Para ejemplo copia una línea de abajo. Las comillas dentro de un texto se escriben \'  */
+const GAMES=[];
+function juego(name,dev,price,url,desc,o={}){
+ let h=0;for(const ch of name)h=(h*31+ch.charCodeAt(0))%360;
+ const hx=(H,l)=>{const f=n=>{const k=(n+H/30)%12,a=.8*Math.min(l,1-l),v=l-a*Math.max(-1,Math.min(k-3,9-k,1));return Math.round(255*v).toString(16).padStart(2,'0')};return '#'+f(0)+f(8)+f(4)};
+ const type=o.type||(/\.html?$/i.test(url)?'play':'download');
+ GAMES.push({id:name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),name,dev,price,url,desc,type,icon:o.icon||(type==='play'?'🎮':'📦'),c:[hx(h,.5),hx((h+50)%360,.2)],tags:o.tags||[]});
+}
+juego('Mindustry','Anuke',0,'https://anuke.itch.io/mindustry','Juego de estrategia y automatización: construye cadenas de producción, extrae recursos y defiende tu base contra oleadas enemigas. Incluye campaña, multijugador y mapas personalizados.',{icon:'⚙️',tags:['Estrategia','Tower Defense','Fábricas']});
+juego('Shattered Pixel Dungeon','Shattered Pixel',0,'https://shattered-pixel.itch.io/shattered-pixel-dungeon','Roguelike clásico de mazmorras con arte pixelado. Elige tu héroe, explora niveles generados al azar, encuentra objetos y derrota jefes.',{icon:'🗡️',tags:['Roguelike','RPG','Pixel Art']});
+juego('Battle for Wesnoth','David White y la comunidad de Wesnoth',0,'https://wesnoth.itch.io/bfw','Juego de estrategia por turnos en un mundo de fantasía. Dirige ejércitos a través de decenas de campañas y partidas multijugador.',{icon:'🏰',tags:['Estrategia por turnos','Fantasía']});
+juego('Hilux Racing','diedeb games',100,'https://diedebgame.github.io/diedebgamespro/hilux_racing.HTML','Juego de carreras en HTML5 que se juega directo en el navegador. Acelera tu Hilux y vence a la competencia.',{icon:'🏎️',tags:['Carreras','HTML5','Navegador']});
+juego('Temple Ruins','Bew Games',0,'https://temple-ruins-bew-games-inc.en.aptoide.com/app','Juego de Bew Games disponible para descargar desde Aptoide.',{icon:'🗿',tags:['Aventura','Descarga']});
+juego('Backrooms','diedeb games',200,'https://diedebgame.github.io/diedebgamespro/Backrooms.html','Explora los pasillos infinitos de las Backrooms directamente en tu navegador. Cómpralo con 200 DiebCoins para desbloquearlo.',{icon:'🚪',tags:['Terror','HTML5','Navegador']});
+/* ====== FIN DE LA LISTA DE JUEGOS ====== */
+const CODES={'091267MASDF':500,'7743HBFBRWFJK':1000,'875789BHJSHDJ':100,'676767676MMM':5000,'93847359JHSJK':900};
+const TABS=['Games','Top Games','Top Desarrolladores','Mi Cuenta','Canjear Tarjeta','Enviar Game'];
+let tab=0,db=null,G={},USED={},ME=null,flash=null;
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function ls(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+const mem={users:ls('dg_users',{}),sess:ls('dg_sess',null)};
+function user(){return mem.sess?mem.users[mem.sess]:null}
+function save(){sv('dg_users',mem.users);sv('dg_sess',mem.sess)}
+const cnt=(g,k)=>(G[g.id]||{})[k]||0;
+const cover=g=>`style="background:linear-gradient(135deg,${g.c[0]},${g.c[1]})"`;
+function owns(g){const u=user();return g.price===0||(u&&u.owned.includes(g.id))}
+
+function nav(){$('#nav').innerHTML=TABS.map((t,i)=>`<button class="${i===tab?'on':''}" onclick="go(${i})">${t}</button>`).join('')}
+function go(i){tab=i;flash=null;render()}
+function render(){
+ nav();const u=user();$('#hc').textContent=u?`💎 ${u.coins} DiebCoins`:'💎 Inicia sesión';
+ const a=$('#app');
+ if(tab===0)a.innerHTML=`<h2>Games</h2><p class="sub">Explora juegos indie gratuitos y de paga. <span class="live">● contadores en vivo</span></p><div class="grid">${GAMES.map(gcard).join('')}</div>`;
+ if(tab===1){const l=[...GAMES].sort((a,b)=>cnt(b,'plays')-cnt(a,'plays'));
+  a.innerHTML=`<h2>Top Games</h2><p class="sub">Los juegos más jugados de la plataforma.</p><div class="list">${l.map((g,i)=>`<div class="li" onclick="openG('${g.id}')" style="cursor:pointer"><div class="rk">${i+1}</div><div class="mini" ${cover(g)}>${g.icon}</div><div class="g1"><b>${esc(g.name)}</b><br><small>por ${esc(g.dev)}</small></div><b>${cnt(g,'plays')} <small>partidas</small></b></div>`).join('')}</div>`}
+ if(tab===2){const m={};GAMES.forEach(g=>{(m[g.dev]=m[g.dev]||{n:0,p:0,l:[]});m[g.dev].n++;m[g.dev].p+=cnt(g,'plays');m[g.dev].l.push(g.name)});
+  const l=Object.entries(m).sort((a,b)=>b[1].n-a[1].n||b[1].p-a[1].p);
+  a.innerHTML=`<h2>Top Desarrolladores</h2><p class="sub">Ordenados por juegos publicados (desempate: partidas totales).</p><div class="list">${l.map(([d,v],i)=>`<div class="li"><div class="rk">${i+1}</div><div class="mini" style="background:var(--sf2)">👾</div><div class="g1"><b>${esc(d)}</b><br><small>${v.l.map(esc).join(', ')}</small></div><b>${v.n} <small>juego${v.n>1?'s':''}</small></b></div>`).join('')}</div>`}
+ if(tab===3)acct();
+ if(tab===4)redeemV();
+ if(tab===5)a.innerHTML=`<h2>Enviar Game</h2><p class="sub">¿Eres desarrollador indie? Muestra tu juego en DIEDEB GAMES.</p><div class="panel"><p>Para publicar tu juego, envía la <b>carpeta completa</b> de tu juego o tu <b>código HTML</b> directamente a este correo:</p><p style="font-size:18px"><a href="mailto:ddxus.tsb@gmail.com?subject=Enviar%20Game%20-%20DIEDEB%20GAMES" style="color:var(--ac)">ddxus.tsb@gmail.com</a></p><p style="color:var(--mt)">Incluye: nombre del juego, tu nombre de desarrollador, descripción, portada, si es gratis o de paga (y precio en DiebCoins) y si se juega en el navegador o se descarga.</p><a class="btn" href="mailto:ddxus.tsb@gmail.com?subject=Enviar%20Game%20-%20DIEDEB%20GAMES">Enviar por correo</a></div>`;
+}
+function gcard(g){const o=owns(g);return `<div class="card" onclick="openG('${g.id}')"><div class="cv" ${cover(g)}>${g.icon}<b>${g.type==='play'?'▶ NAVEGADOR':'⬇ DESCARGA'}</b></div><div class="cb"><h3>${esc(g.name)}</h3><small>${esc(g.dev)}</small><div class="row"><span><span class="tag ${g.price?'paid':'free'}">${g.price?'💎 '+g.price:'GRATIS'}</span>${g.price&&o?'<span class="tag free">TUYO</span>':''}</span><span>${g.price?cnt(g,'buys')+' compras':cnt(g,'plays')+' partidas'}</span></div></div></div>`}
+
+/* ---- Modal juego ---- */
+let cur=null,msg='';
+function openG(id){cur=GAMES.find(g=>g.id===id);msg='';if(cur.price===0||owns(cur))bump(cur.id,'plays');modalR();$('#modal').classList.add('on')}
+function closeM(){$('#modal').classList.remove('on');$('#mc').innerHTML='';cur=null}
+function modalR(){if(!cur)return;const g=cur,o=owns(g),u=user();let st;
+ if(!o){const can=u&&u.coins>=g.price;st=`<div class="stage lock" style="background:linear-gradient(135deg,${g.c[0]}55,#000)"><div style="font-size:48px">🔒</div><b style="font-size:20px">Juego bloqueado · 💎 ${g.price} DiebCoins</b><span style="color:var(--mt)">${!u?'Inicia sesión en "Mi Cuenta" para comprarlo.':can?'Tienes saldo suficiente: '+u.coins+' DiebCoins.':'Saldo insuficiente ('+u.coins+'). Canjea una tarjeta para conseguir más DiebCoins.'}</span><button class="btn" ${can?'':'disabled'} onclick="buy()">Comprar y desbloquear</button>${!u?'<button class="btn g" onclick="closeM();go(3)">Ir a Mi Cuenta</button>':!can?'<button class="btn g" onclick="closeM();go(4)">Canjear tarjeta</button>':''}</div>`}
+ else if(g.type==='play')st=`<iframe class="stage" src="${esc(g.url)}" allow="fullscreen; autoplay; gamepad" allowfullscreen></iframe><button class="btn g" onclick="document.querySelector('iframe.stage').requestFullscreen&&document.querySelector('iframe.stage').requestFullscreen()">⛶ Pantalla completa</button> <a class="btn g" href="${esc(g.url)}" target="_blank" rel="noopener">Abrir en pestaña nueva</a>`;
+ else st=`<div class="stage lock" style="background:linear-gradient(135deg,${g.c[0]}66,${g.c[1]}33)"><div style="font-size:64px">${g.icon}</div><b style="font-size:20px">Disponible para descargar</b><a class="btn" href="${esc(g.url)}" target="_blank" rel="noopener">⬇ Descargar ${esc(g.name)}</a></div>`;
+ $('#mc').innerHTML=`<h2 style="padding-right:30px">${esc(g.name)}</h2>${st}${msg?`<div class="msg ${msg[0]==='!'?'er':'ok'}">${esc(msg.slice(1))}</div>`:''}<p><span class="tag ${g.price?'paid':'free'}">${g.price?'💎 '+g.price+' DiebCoins':'GRATIS'}</span> <b>Desarrollador:</b> ${esc(g.dev)}</p><p>${esc(g.desc)}</p><p>${g.tags.map(t=>`<span class="pill">${esc(t)}</span>`).join('')}</p><p style="color:var(--mt)">🎮 <b>${cnt(g,'plays')}</b> partidas${g.price?` · 🛒 <b>${cnt(g,'buys')}</b> compras <span class="live">● en vivo</span>`:''}</p>`}
+async function buy(){const g=cur,u=user();if(!u||u.coins<g.price){msg='!No tienes suficientes DiebCoins.';return modalR()}
+ u.coins-=g.price;u.owned.push(g.id);save();await bump(g.id,'buys');msg='¡Compra exitosa! Juego desbloqueado.';render();modalR()}
+async function bump(id,k){try{if(!db){G[id]={...(G[id]||{}),[k]:((G[id]||{})[k]||0)+1};return}
+ const r=db.doc('games/'+id),s=await r.get(),d=s.exists?s.data():{};await r.set({...d,[k]:(d[k]||0)+1})}catch(e){}}
+
+/* ---- Cuenta ---- */
+function acct(){const u=user(),a=$('#app');
+ if(!u){a.innerHTML=`<h2>Mi Cuenta</h2><p class="sub">Registro e inicio de sesión (simulado, se guarda en este navegador).</p><div class="panel"><label>Usuario</label><input type="text" id="un" maxlength="20" autocomplete="username"><label>Contraseña</label><input type="password" id="pw" autocomplete="current-password"><button class="btn" onclick="login()">Iniciar sesión</button> <button class="btn g" onclick="signup()">Registrarme</button>${flash?`<div class="msg ${flash[0]==='!'?'er':'ok'}">${esc(flash.slice(1))}</div>`:''}</div>`;return}
+ a.innerHTML=`<h2>Mi Cuenta</h2><p class="sub">Bienvenido, ${esc(mem.sess)}.</p><div class="panel"><div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">${u.avatar?`<img class="av" src="${u.avatar}" alt="Foto de perfil">`:`<div class="av">${esc(mem.sess[0].toUpperCase())}</div>`}<div><b style="font-size:20px">${esc(mem.sess)}</b><div class="coins" style="margin-top:8px">💎 ${u.coins} DiebCoins</div></div></div><p style="margin-top:18px">Cambiar foto de perfil:</p><input type="file" accept="image/*" onchange="pic(this)"><p style="color:var(--mt)">Juegos comprados: ${u.owned.length?u.owned.map(i=>esc(GAMES.find(g=>g.id===i)?.name||i)).join(', '):'ninguno'}</p><button class="btn g" onclick="logout()">Cerrar sesión</button></div>`}
+function login(){const n=$('#un').value.trim(),p=$('#pw').value,u=mem.users[n];if(u&&u.pw===p){mem.sess=n;flash=null;save();render()}else{flash='!Usuario o contraseña incorrectos.';acct()}}
+function signup(){const n=$('#un').value.trim(),p=$('#pw').value;if(n.length<3||p.length<3){flash='!Usuario y contraseña de mínimo 3 caracteres.';return acct()}
+ if(mem.users[n]){flash='!Ese usuario ya existe.';return acct()}mem.users[n]={pw:p,coins:0,avatar:'',owned:[]};mem.sess=n;flash=null;save();render()}
+function logout(){mem.sess=null;save();render()}
+function pic(i){const f=i.files[0];if(!f)return;const im=new Image();im.onload=()=>{const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d'),s=Math.min(im.width,im.height);x.drawImage(im,(im.width-s)/2,(im.height-s)/2,s,s,0,0,128,128);user().avatar=c.toDataURL('image/jpeg',.8);save();render()};im.src=URL.createObjectURL(f)}
+
+/* ---- Canjear ---- */
+function redeemV(){$('#app').innerHTML=`<h2>Canjear Tarjeta</h2><p class="sub">Ingresa tu código promocional y gana DiebCoins. Cada código solo se puede usar una vez en todo el mundo.</p><div class="panel"><label>Código</label><input type="text" id="cd" placeholder="XXXXXXXXXXXX" autocapitalize="characters"><button class="btn" onclick="redeem()">Canjear</button>${flash?`<div class="msg ${flash[0]==='!'?'er':'ok'}">${esc(flash.slice(1))}</div>`:''}<p style="color:var(--mt);font-size:13px">${db?'<span class="live">● Conectado en línea</span>':'Modo local (sin conexión al servidor compartido)'}</p></div>`}
+async function redeem(){const u=user();if(!u){flash='!Debes iniciar sesión en Mi Cuenta primero.';return redeemV()}
+ const c=$('#cd').value.trim().toUpperCase();if(!CODES[c]||USED[c]){flash='!Código inválido o ya canjeado.';return redeemV()}
+ try{if(db){const r=await db.doc('codes/'+c).acquire({holder:mem.sess,ttlMs:3e11,data:{by:mem.sess}});if(!r.acquired){flash='!Código inválido o ya canjeado.';return redeemV()}}}catch(e){flash='!No se pudo validar el código. Intenta de nuevo.';return redeemV()}
+ USED[c]=1;u.coins+=CODES[c];save();flash=`¡Código canjeado! +${CODES[c]} DiebCoins.`;render()}
+
+/* ---- Conexión en línea (estado global compartido) ---- */
+(async()=>{try{const c=await claude.use('db');if(!c)return;db=c;
+ db.collection('games').onSnapshot(s=>{G={};s.docs.forEach(d=>G[d.id]=d.data());if(tab<3||tab===4&&0)render();modalR()},()=>{});
+ db.collection('codes').onSnapshot(s=>{USED={};s.docs.forEach(d=>USED[d.id]=1)},()=>{});
+ }catch(e){}})();
+render();
+</script></body></html>
